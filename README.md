@@ -1,7 +1,7 @@
 PHP SimpleCache
 ===============
 
-A simple PHP script that uses the Memcache class to aid caching and storage of content.
+PHP SimpleCache is a simple PHP class that uses Memcache  to aid caching and storage of content. It can be easily integrated with any existing system.
 
 Using SimpleCache
 -----------------
