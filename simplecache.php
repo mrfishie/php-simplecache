@@ -14,7 +14,7 @@
  * @since     Class available since Release 1.0.0
  */
 if (!class_exists("SimpleCache")) {
-  class SimpleCache {
+	class SimpleCache {
 		private $obj;
 		private $_error_handler;
 		
@@ -27,8 +27,8 @@ if (!class_exists("SimpleCache")) {
 		 * @param port Set the port for the memcache object. Must be an int. Default of 11211
 		 */
 		public function __construct($host = "localhost", $port = 11211) {
-			$this->_error_handler = die;
-			$obj = new Memcache;
+			$this->_error_handler = function($e) { die($e); };
+			$obj = new Memcache();
 			$obj->connect($host, $port) or $this->_error("Cannot connect to cache.");
 		}
 		
@@ -44,7 +44,7 @@ if (!class_exists("SimpleCache")) {
 		 * @param compress Decide whether to compress on-the-fly. Must be a bool. Default of true
 		 */
 		public function Key($key, $function, $expire = 0, $compress = true) {
-			if (!isset($this->obj->get($key))) {
+			if (!$this->obj->get($key)) {
 				$func_return = $function();
 				$flag = $compress ? MEMCACHE_COMPRESSED : 0;
 				$this->obj->set($key, $func_return, $flag, $expire) or $this->_error("Cannot set key '" . $key . "'.");;
