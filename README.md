@@ -15,7 +15,7 @@ After you have required the file, you need to create the SimpleCache object.
 The constructor for SimpleCache has two arguments: host and port. These specify the location for the cache to be stored.
 Now, we can start storing information...
 
-    echo = $simplecache->Key("myvar", function() {
+    echo $simplecache->Key("myvar", function() {
         return "Something!";
     });
 
@@ -25,7 +25,7 @@ Key is used to set the key where it will be stored. The function must be a calla
 
 This function will print out `Something!`. However, by placing an `echo` into the function like below, we can see that the function is actually only called the first time.
 
-    echo = $simplecache->Key("myvar", function() {
+    echo $simplecache->Key("myvar", function() {
         echo "Running the function!";
         return "Something!";
     });
